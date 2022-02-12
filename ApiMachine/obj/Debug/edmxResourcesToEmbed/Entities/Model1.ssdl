@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MachineDrinksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Монета">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Номинал" Type="int" />
+  </EntityType>
+  <EntityType Name="Монета_в_торговом_автомате">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_торговый_автомат" Type="int" />
+    <Property Name="Id_монета" Type="int" />
+    <Property Name="Количество" Type="int" />
+    <Property Name="Активный" Type="int" />
+  </EntityType>
+  <EntityType Name="Напиток">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название" Type="nvarchar" MaxLength="50" />
+    <Property Name="Фото" Type="varbinary(max)" />
+    <Property Name="Стоимость" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Напиток_из_торгового_автомата">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_торговый_автомат" Type="int" />
+    <Property Name="Id_напиток" Type="int" />
+    <Property Name="Количество" Type="int" />
+  </EntityType>
+  <EntityType Name="Торговый_автомат">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Секретный_код" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Монета_в___Id_мо__412EB0B6">
+    <End Role="Монета" Type="Self.Монета" Multiplicity="0..1" />
+    <End Role="Монета_в_торговом_автомате" Type="Self.Монета_в_торговом_автомате" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Монета">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Монета_в_торговом_автомате">
+        <PropertyRef Name="Id_монета" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Монета_в___Id_то__403A8C7D">
+    <End Role="Торговый_автомат" Type="Self.Торговый_автомат" Multiplicity="0..1" />
+    <End Role="Монета_в_торговом_автомате" Type="Self.Монета_в_торговом_автомате" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Торговый_автомат">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Монета_в_торговом_автомате">
+        <PropertyRef Name="Id_торговый_автомат" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Напиток_и__Id_на__3D5E1FD2">
+    <End Role="Напиток" Type="Self.Напиток" Multiplicity="0..1" />
+    <End Role="Напиток_из_торгового_автомата" Type="Self.Напиток_из_торгового_автомата" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Напиток">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Напиток_из_торгового_автомата">
+        <PropertyRef Name="Id_напиток" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Напиток_и__Id_то__3C69FB99">
+    <End Role="Торговый_автомат" Type="Self.Торговый_автомат" Multiplicity="0..1" />
+    <End Role="Напиток_из_торгового_автомата" Type="Self.Напиток_из_торгового_автомата" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Торговый_автомат">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Напиток_из_торгового_автомата">
+        <PropertyRef Name="Id_торговый_автомат" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MachineDrinksModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Монета" EntityType="Self.Монета" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Монета_в_торговом_автомате" EntityType="Self.Монета_в_торговом_автомате" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Напиток" EntityType="Self.Напиток" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Напиток_из_торгового_автомата" EntityType="Self.Напиток_из_торгового_автомата" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Торговый_автомат" EntityType="Self.Торговый_автомат" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Монета_в___Id_мо__412EB0B6" Association="Self.FK__Монета_в___Id_мо__412EB0B6">
+      <End Role="Монета" EntitySet="Монета" />
+      <End Role="Монета_в_торговом_автомате" EntitySet="Монета_в_торговом_автомате" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Монета_в___Id_то__403A8C7D" Association="Self.FK__Монета_в___Id_то__403A8C7D">
+      <End Role="Торговый_автомат" EntitySet="Торговый_автомат" />
+      <End Role="Монета_в_торговом_автомате" EntitySet="Монета_в_торговом_автомате" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Напиток_и__Id_на__3D5E1FD2" Association="Self.FK__Напиток_и__Id_на__3D5E1FD2">
+      <End Role="Напиток" EntitySet="Напиток" />
+      <End Role="Напиток_из_торгового_автомата" EntitySet="Напиток_из_торгового_автомата" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Напиток_и__Id_то__3C69FB99" Association="Self.FK__Напиток_и__Id_то__3C69FB99">
+      <End Role="Торговый_автомат" EntitySet="Торговый_автомат" />
+      <End Role="Напиток_из_торгового_автомата" EntitySet="Напиток_из_торгового_автомата" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

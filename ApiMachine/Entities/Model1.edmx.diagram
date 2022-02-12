@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1846574ca48b4b4e8015f6b9e9df2442" Name="Diagram1">
+        <EntityTypeShape EntityType="MachineDrinksModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MachineDrinksModel.Монета" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MachineDrinksModel.Монета_в_торговом_автомате" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MachineDrinksModel.Напиток" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MachineDrinksModel.Напиток_из_торгового_автомата" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MachineDrinksModel.Торговый_автомат" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="MachineDrinksModel.FK__Монета_в___Id_мо__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MachineDrinksModel.FK__Монета_в___Id_то__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="MachineDrinksModel.FK__Напиток_и__Id_на__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="MachineDrinksModel.FK__Напиток_и__Id_то__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

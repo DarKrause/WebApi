@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище MachineDrinksModelContainer" CdmEntityContainer="MachineDrinksEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MachineDrinksModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Монета">
+      <EntityTypeMapping TypeName="MachineDrinksModel.Монета">
+        <MappingFragment StoreEntitySet="Монета">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Номинал" ColumnName="Номинал" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Монета_в_торговом_автомате">
+      <EntityTypeMapping TypeName="MachineDrinksModel.Монета_в_торговом_автомате">
+        <MappingFragment StoreEntitySet="Монета_в_торговом_автомате">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id_торговый_автомат" ColumnName="Id_торговый_автомат" />
+          <ScalarProperty Name="Id_монета" ColumnName="Id_монета" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+          <ScalarProperty Name="Активный" ColumnName="Активный" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Напиток">
+      <EntityTypeMapping TypeName="MachineDrinksModel.Напиток">
+        <MappingFragment StoreEntitySet="Напиток">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Фото" ColumnName="Фото" />
+          <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Напиток_из_торгового_автомата">
+      <EntityTypeMapping TypeName="MachineDrinksModel.Напиток_из_торгового_автомата">
+        <MappingFragment StoreEntitySet="Напиток_из_торгового_автомата">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id_торговый_автомат" ColumnName="Id_торговый_автомат" />
+          <ScalarProperty Name="Id_напиток" ColumnName="Id_напиток" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Торговый_автомат">
+      <EntityTypeMapping TypeName="MachineDrinksModel.Торговый_автомат">
+        <MappingFragment StoreEntitySet="Торговый_автомат">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Секретный_код" ColumnName="Секретный_код" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

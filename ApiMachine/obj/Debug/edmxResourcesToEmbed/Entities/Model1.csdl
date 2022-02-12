@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MachineDrinksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Монета">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Номинал" Type="Int32" />
+    <NavigationProperty Name="Монета_в_торговом_автомате" Relationship="Self.FK__Монета_в___Id_мо__412EB0B6" FromRole="Монета" ToRole="Монета_в_торговом_автомате" />
+  </EntityType>
+  <EntityType Name="Монета_в_торговом_автомате">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_торговый_автомат" Type="Int32" />
+    <Property Name="Id_монета" Type="Int32" />
+    <Property Name="Количество" Type="Int32" />
+    <Property Name="Активный" Type="Int32" />
+    <NavigationProperty Name="Монета" Relationship="Self.FK__Монета_в___Id_мо__412EB0B6" FromRole="Монета_в_торговом_автомате" ToRole="Монета" />
+    <NavigationProperty Name="Торговый_автомат" Relationship="Self.FK__Монета_в___Id_то__403A8C7D" FromRole="Монета_в_торговом_автомате" ToRole="Торговый_автомат" />
+  </EntityType>
+  <EntityType Name="Напиток">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Стоимость" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Напиток_из_торгового_автомата" Relationship="Self.FK__Напиток_и__Id_на__3D5E1FD2" FromRole="Напиток" ToRole="Напиток_из_торгового_автомата" />
+  </EntityType>
+  <EntityType Name="Напиток_из_торгового_автомата">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_торговый_автомат" Type="Int32" />
+    <Property Name="Id_напиток" Type="Int32" />
+    <Property Name="Количество" Type="Int32" />
+    <NavigationProperty Name="Напиток" Relationship="Self.FK__Напиток_и__Id_на__3D5E1FD2" FromRole="Напиток_из_торгового_автомата" ToRole="Напиток" />
+    <NavigationProperty Name="Торговый_автомат" Relationship="Self.FK__Напиток_и__Id_то__3C69FB99" FromRole="Напиток_из_торгового_автомата" ToRole="Торговый_автомат" />
+  </EntityType>
+  <EntityType Name="Торговый_автомат">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Секретный_код" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Монета_в_торговом_автомате" Relationship="Self.FK__Монета_в___Id_то__403A8C7D" FromRole="Торговый_автомат" ToRole="Монета_в_торговом_автомате" />
+    <NavigationProperty Name="Напиток_из_торгового_автомата" Relationship="Self.FK__Напиток_и__Id_то__3C69FB99" FromRole="Торговый_автомат" ToRole="Напиток_из_торгового_автомата" />
+  </EntityType>
+  <Association Name="FK__Монета_в___Id_мо__412EB0B6">
+    <End Role="Монета" Type="Self.Монета" Multiplicity="0..1" />
+    <End Role="Монета_в_торговом_автомате" Type="Self.Монета_в_торговом_автомате" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Монета">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Монета_в_торговом_автомате">
+        <PropertyRef Name="Id_монета" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Монета_в___Id_то__403A8C7D">
+    <End Role="Торговый_автомат" Type="Self.Торговый_автомат" Multiplicity="0..1" />
+    <End Role="Монета_в_торговом_автомате" Type="Self.Монета_в_торговом_автомате" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Торговый_автомат">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Монета_в_торговом_автомате">
+        <PropertyRef Name="Id_торговый_автомат" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Напиток_и__Id_на__3D5E1FD2">
+    <End Role="Напиток" Type="Self.Напиток" Multiplicity="0..1" />
+    <End Role="Напиток_из_торгового_автомата" Type="Self.Напиток_из_торгового_автомата" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Напиток">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Напиток_из_торгового_автомата">
+        <PropertyRef Name="Id_напиток" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Напиток_и__Id_то__3C69FB99">
+    <End Role="Торговый_автомат" Type="Self.Торговый_автомат" Multiplicity="0..1" />
+    <End Role="Напиток_из_торгового_автомата" Type="Self.Напиток_из_торгового_автомата" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Торговый_автомат">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Напиток_из_торгового_автомата">
+        <PropertyRef Name="Id_торговый_автомат" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MachineDrinksEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Монета" EntityType="Self.Монета" />
+    <EntitySet Name="Монета_в_торговом_автомате" EntityType="Self.Монета_в_торговом_автомате" />
+    <EntitySet Name="Напиток" EntityType="Self.Напиток" />
+    <EntitySet Name="Напиток_из_торгового_автомата" EntityType="Self.Напиток_из_торгового_автомата" />
+    <EntitySet Name="Торговый_автомат" EntityType="Self.Торговый_автомат" />
+    <AssociationSet Name="FK__Монета_в___Id_мо__412EB0B6" Association="Self.FK__Монета_в___Id_мо__412EB0B6">
+      <End Role="Монета" EntitySet="Монета" />
+      <End Role="Монета_в_торговом_автомате" EntitySet="Монета_в_торговом_автомате" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Монета_в___Id_то__403A8C7D" Association="Self.FK__Монета_в___Id_то__403A8C7D">
+      <End Role="Торговый_автомат" EntitySet="Торговый_автомат" />
+      <End Role="Монета_в_торговом_автомате" EntitySet="Монета_в_торговом_автомате" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Напиток_и__Id_на__3D5E1FD2" Association="Self.FK__Напиток_и__Id_на__3D5E1FD2">
+      <End Role="Напиток" EntitySet="Напиток" />
+      <End Role="Напиток_из_торгового_автомата" EntitySet="Напиток_из_торгового_автомата" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Напиток_и__Id_то__3C69FB99" Association="Self.FK__Напиток_и__Id_то__3C69FB99">
+      <End Role="Торговый_автомат" EntitySet="Торговый_автомат" />
+      <End Role="Напиток_из_торгового_автомата" EntitySet="Напиток_из_торгового_автомата" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
